@@ -1,20 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello Page</title>
+</head>
+<body>
 <?php
-$servername = "localhost";
-$username = "admin";
-$password = "admin";
-$dbname = "main";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-$sql = "SELECT * FROM main";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-         echo "Hello, " . $row["keyword"]. "<br> current build is build#";
-    }
-} else {
-    echo "0 results";
-}
-$conn->close();
+$mysqli = new mysqli('127.0.0.1', 'admin', 'admin', 'main');
+$sql = "SELECT keyword FROM main WHERE id = 1";
+$result = $mysqli->query($sql);
+$db_row = $result->fetch_assoc();
+echo 'Hello, ' . $db_row['keyword'] . '<br> build # is number';
 ?>
+</body>
+</html>
